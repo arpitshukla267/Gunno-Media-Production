@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react'
-import YouTube from 'react-youtube'
 import Cursor from './Cursor'
+import YouTube from 'react-youtube'
 
 function BrandEvents() {
   const playerRefs = useRef([])
   const [showMore, setShowMore] = useState(false)
-  const [height, setHeight] = useState('0px')
-  const extraVideosRef = useRef(null)
   const [initialCount, setInitialCount] = useState(3)
+  const [isMobile, setIsMobile] = useState(false)
+  const [loadedPlayers, setLoadedPlayers] = useState({})
+  const extraRef = useRef(null)
 
   const extractVideoId = (urlOrId) => {
     try {
@@ -16,21 +17,6 @@ function BrandEvents() {
     } catch {
       return urlOrId
     }
-  }
-
-  const onReady = (event, index) => {
-    playerRefs.current[index] = event.target
-    event.target.pauseVideo()
-  }
-
-  const handleMouseEnter = (index) => {
-    const player = playerRefs.current[index]
-    if (player) player.playVideo()
-  }
-
-  const handleMouseLeave = (index) => {
-    const player = playerRefs.current[index]
-    if (player) player.pauseVideo()
   }
 
   const videoIds = [
@@ -45,18 +31,14 @@ function BrandEvents() {
     'RymfOyVSVmA',
     'eTJC3aM-OA8',
     'Kr9NLa_8zgw',
-    '2E8a8XuTOrg'  
+    '2E8a8XuTOrg'
   ]
 
   useEffect(() => {
-    // Adjust initial visible videos based on screen width
     const handleResize = () => {
       const width = window.innerWidth
-      if (width < 768) {
-        setInitialCount(4) // Mobile
-      } else {
-        setInitialCount(3) // Desktop
-      }
+      setIsMobile(width < 768)
+      setInitialCount(width < 768 ? 4 : 3)
     }
 
     handleResize()
@@ -64,14 +46,99 @@ function BrandEvents() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  useEffect(() => {
-    if (showMore && extraVideosRef.current) {
-      const scrollHeight = extraVideosRef.current.scrollHeight
-      setHeight(`${scrollHeight}px`)
-    } else {
-      setHeight('0px')
+  const handleLoadPlayer = (index) => {
+    setLoadedPlayers((prev) => ({ ...prev, [index]: true }))
+  }
+
+  const handleMouseEnter = (index) => {
+    const player = playerRefs.current[index]
+    if (player && player.playVideo) player.playVideo()
+  }
+
+  const handleMouseLeave = (index) => {
+    const player = playerRefs.current[index]
+    if (player && player.pauseVideo) player.pauseVideo()
+  }
+
+  const handleToggleShowMore = () => {
+    setShowMore(prev => {
+      const next = !prev
+      setTimeout(() => {
+        if (next && extraRef.current) {
+          extraRef.current.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 300)
+      return next
+    })
+  }
+
+  const renderVideo = (url, index) => {
+    const videoId = extractVideoId(url)
+    const isLoaded = loadedPlayers[index]
+
+    if (isMobile && !isLoaded) {
+      return (
+        <div
+          key={index}
+          className="overflow-hidden rounded-2xl relative group cursor-pointer"
+          onClick={() => handleLoadPlayer(index)}
+        >
+          <img
+            src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+            alt="thumbnail"
+            className="w-full h-[300px] object-cover rounded-2xl"
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/60 transition">
+            <svg
+              className="w-16 h-16 text-white"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+      )
     }
-  }, [showMore])
+
+    return (
+      <div
+        key={index}
+        className="overflow-hidden rounded-2xl relative group cursor-pointer"
+        onMouseEnter={() => {
+          if (!isMobile) handleMouseEnter(index)
+        }}
+        onMouseLeave={() => {
+          if (!isMobile) handleMouseLeave(index)
+        }}
+        onClick={() => {
+          if (isMobile && !isLoaded) handleLoadPlayer(index)
+        }}
+      >
+        <YouTube
+          videoId={videoId}
+          opts={{
+            height: '300',
+            width: '100%',
+            playerVars: {
+              autoplay: 0,
+              mute: 1,
+              loop: 1,
+              controls: 0,
+              modestbranding: 1,
+              rel: 0,
+              showinfo: 0,
+              playlist: videoId,
+            },
+          }}
+          onReady={(e) => {
+            playerRefs.current[index] = e.target
+            if (!isMobile) e.target.pauseVideo()
+          }}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="w-full min-h-screen relative bg-black flex flex-col z-20 text-white px-4 md:px-10 py-14 gap-12 border-b border-gray-700">
@@ -83,87 +150,29 @@ function BrandEvents() {
         </h1>
       </div>
 
-      {/* Initial visible videos */}
+      {/* Initial Videos */}
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 px-2 md:px-10">
-        {videoIds.slice(0, initialCount).map((url, index) => {
-          const videoId = extractVideoId(url)
-          return (
-            <div
-              key={index}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave(index)}
-              className="overflow-hidden rounded-2xl"
-            >
-              <YouTube
-                videoId={videoId}
-                opts={{
-                  height: '300',
-                  width: '100%',
-                  playerVars: {
-                    autoplay: 0,
-                    mute: 0,
-                    loop: 1,
-                    controls: 0,
-                    modestbranding: 1,
-                    rel: 0,
-                    showinfo: 0,
-                    playlist: videoId,
-                  },
-                }}
-                onReady={(e) => onReady(e, index)}
-              />
-            </div>
-          )
-        })}
+        {videoIds.slice(0, initialCount).map((url, index) =>
+          renderVideo(url, index)
+        )}
       </div>
 
-      {/* Expandable videos */}
-      <div
-        ref={extraVideosRef}
-        style={{
-          height: height,
-          overflow: 'hidden',
-          transition: 'height 0.6s ease',
-        }}
-      >
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-8 px-2 md:px-10">
-          {videoIds.slice(initialCount).map((url, index) => {
-            const videoId = extractVideoId(url)
-            return (
-              <div
-                key={index + initialCount}
-                onMouseEnter={() => handleMouseEnter(index + initialCount)}
-                onMouseLeave={() => handleMouseLeave(index + initialCount)}
-                className="overflow-hidden rounded-2xl"
-              >
-                <YouTube
-                  videoId={videoId}
-                  opts={{
-                    height: '300',
-                    width: '100%',
-                    playerVars: {
-                      autoplay: 0,
-                      mute: 0,
-                      loop: 1,
-                      controls: 0,
-                      modestbranding: 1,
-                      rel: 0,
-                      showinfo: 0,
-                      playlist: videoId,
-                    },
-                  }}
-                  onReady={(e) => onReady(e, index + initialCount)}
-                />
-              </div>
-            )
-          })}
+      {/* Show More Videos */}
+      {showMore && (
+        <div
+          ref={extraRef}
+          className="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-8 px-2 md:px-10"
+        >
+          {videoIds.slice(initialCount).map((url, index) =>
+            renderVideo(url, index + initialCount)
+          )}
         </div>
-      </div>
+      )}
 
       {/* Toggle Button */}
       <div className="flex justify-center mt-4">
         <button
-          onClick={() => setShowMore(!showMore)}
+          onClick={handleToggleShowMore}
           className="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white text-lg font-semibold rounded-full transition duration-300"
         >
           {showMore ? 'Show Less' : 'Show More'}
@@ -174,5 +183,3 @@ function BrandEvents() {
 }
 
 export default BrandEvents
-
-    
