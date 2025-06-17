@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function Page5() {
   const photographyRef = useRef(null);
@@ -11,11 +11,12 @@ function Page5() {
     gsap.registerPlugin(ScrollTrigger);
 
     ScrollTrigger.matchMedia({
-      // Desktop and tablets
-      "(min-width: 641px)": function () {
+      "(min-width: 641px)": () => {
         const sections = [photographyRef, videographyRef, visualRef];
 
         sections.forEach((ref) => {
+          if (!ref.current) return;
+
           ScrollTrigger.create({
             trigger: ref.current,
             start: 'top 47%',
@@ -26,13 +27,16 @@ function Page5() {
             onLeaveBack: () => ref.current.classList.remove('text-white'),
           });
         });
+
+        ScrollTrigger.refresh(); // Ensures triggers update on layout load
       },
 
-      // Mobile devices
-      "(max-width: 640px)": function () {
+      "(max-width: 640px)": () => {
         const sections = [photographyRef, videographyRef, visualRef];
 
         sections.forEach((ref) => {
+          if (!ref.current) return;
+
           ScrollTrigger.create({
             trigger: ref.current,
             start: 'top 50%',
@@ -43,7 +47,9 @@ function Page5() {
             onLeaveBack: () => ref.current.classList.remove('text-white'),
           });
         });
-      },
+
+        ScrollTrigger.refresh(); // Ensures triggers update on layout load
+      }
     });
 
     return () => {
@@ -58,7 +64,6 @@ function Page5() {
         our <span className="inline-block">services</span>
       </h1>
 
-      {/* Photography */}
       <div
         ref={photographyRef}
         className="border-t sticky top-[9rem] sm:top-[12rem] border-white pt-6 sm:pt-8 text-gray-600 transition-colors duration-300 bg-black"
@@ -74,7 +79,6 @@ function Page5() {
         </div>
       </div>
 
-      {/* Videography */}
       <div
         ref={videographyRef}
         className="border-t sticky top-[9rem] sm:top-[12rem] border-gray-800 pt-6 sm:pt-8 text-gray-600 transition-colors duration-300 bg-black"
@@ -90,7 +94,6 @@ function Page5() {
         </div>
       </div>
 
-      {/* Pre & Post Production */}
       <div
         ref={visualRef}
         className="border-t sticky top-[9rem] sm:top-[12rem] border-gray-800 pt-6 sm:pt-8 text-gray-600 transition-colors duration-300 bg-black"
