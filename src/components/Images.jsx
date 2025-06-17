@@ -15,18 +15,18 @@ import m25 from '../assets/imagecompressor-1/IMG_0874Ene-min.jpg';
 import m6 from '../assets/imagecompressor-1/IMG_0472-min.jpeg';
 import m7 from '../assets/imagecompressor-1/IMG_0512-min.jpeg';
 import m8 from '../assets/imagecompressor-1/IMG_0522-min.jpeg';
-import m9 from '../assets/imagecompressor-1/IMG_0689-min.jpg';
-import m10 from '../assets/imagecompressor-1/IMG_0725-min.jpg';
-import m16 from '../assets/imagecompressor-1/IMG_0270-min.jpg';
-import m17 from '../assets/imagecompressor-1/IMG_0335-min.jpg';
-import m18 from '../assets/imagecompressor-1/IMG_0348-min.jpg';
+import m9 from '../assets/imagecompressor-1/IMG_0689-min.JPG';
+import m10 from '../assets/imagecompressor-1/IMG_0725-min.JPG';
+import m16 from '../assets/imagecompressor-1/IMG_0270-min.JPG';
+import m17 from '../assets/imagecompressor-1/IMG_0335-min.JPG';
+import m18 from '../assets/imagecompressor-1/IMG_0348-min.JPG';
 import m19 from '../assets/imagecompressor-1/IMG_0467-min.jpeg';
 import m20 from '../assets/imagecompressor-1/IMG_0470-min.jpeg';
-import m26 from '../assets/imagecompressor-1/IMG_1861-min.jpg';
-import m27 from '../assets/imagecompressor-1/IMG_1860-min.jpg';
-import m28 from '../assets/imagecompressor-1/IMG_1842-min.jpeg';
-import m29 from '../assets/imagecompressor-1/IMG_0725-min.jpg'; 
-import m30 from '../assets/imagecompressor-1/IMG_0689-min.jpg';  
+import m26 from '../assets/imagecompressor-1/IMG_1861-min.JPG';
+import m27 from '../assets/imagecompressor-1/IMG_1860-min.JPG';
+import m28 from '../assets/imagecompressor-1/IMG_1842-min.JPEG';
+import m29 from '../assets/imagecompressor-1/IMG_0725-min.JPG'; 
+import m30 from '../assets/imagecompressor-1/IMG_0689-min.JPG';  
 
 // Compressed images
 import m1 from '../assets/imagecompressor-1/Aa-min.jpg';
