@@ -4,7 +4,7 @@ import dslrCameraLeft from '../assets/loading-page-left.jpg';
 import dslrCameraRight from '../assets/loading-page-right.jpg';
 import dslrCameraLeftMobile from '../assets/loading-page-mobile-left.jpg';
 import dslrCameraRightMobile from '../assets/loading-page-mobile-right.jpg';
-import Cursor from './cursor';
+import Cursor from './Cursor';
 import Page2 from './Page2';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import styles from './LoadingPage.module.css';
