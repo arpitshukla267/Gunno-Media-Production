@@ -35,13 +35,13 @@ function Page3() {
 
   const videoIds = [
     'fFMAmvt8ki8',
-    'ctWuDhfKm3s',
-    'kq6MAnUPzPA',
-    'https://youtu.be/shjUNHDOAAY?si=uiaHEgMo6eX1lH9E',
-    'b8Ucv-ExOEU',
     'qojHoEG6Kt0',
-    'https://youtu.be/-xXqkUiWrh8?si=7bDZdZcpet7rLoXT',
+    'kq6MAnUPzPA',
+    'https://youtu.be/-1HWFS7pvG4',
     'https://youtu.be/yi3cPJw3vyE?si=YXoFfCJeivpLrx3E',
+    'https://youtu.be/shjUNHDOAAY?si=uiaHEgMo6eX1lH9E',
+    'https://youtu.be/p5BYk8m1DC0',
+    'https://www.youtube.com/watch?v=4_6Yn4e8QLE',
     'https://youtu.be/UabJpnTZAME?si=PFHGl6kDfXbYlnt8'
   ]
 
