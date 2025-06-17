@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* In App.css or index.css */
+.bebas-font {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 700; /* Even though Bebas Neue is single weight, this helps for fallback */
+}
+

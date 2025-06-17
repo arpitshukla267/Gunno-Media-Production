@@ -1,0 +1,35 @@
+@keyframes scrollReels {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scrolling-track:hover {
+  animation-play-state: paused;
+}
+
+.scroll-content {
+  display: inline-flex;
+  gap: 2rem;
+  animation: scrollReels 20s linear infinite;
+  animation-play-state: running;
+}
+
+.scroll-paused {
+  animation-play-state: paused !important;
+}
+
+@media (max-width: 640px) {
+  .scroll-content {
+    animation-duration: 20s;
+    gap: 1rem;
+  }
+}
+
+.scroll-content:hover {
+  cursor: pointer;
+}
