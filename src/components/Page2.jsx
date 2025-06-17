@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import Cursor from './cursor';
+import Cursor from './Cursor';
 import { NavLink } from 'react-router-dom';
 import aboutUs from '../assets/Gunno-Media-Produtions-2.mp4';
 

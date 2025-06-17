@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import YouTube from 'react-youtube'
-import Cursor from './cursor'
+import Cursor from './Cursor'
 
 function Page3() {
   const playerRefs = useRef([])
