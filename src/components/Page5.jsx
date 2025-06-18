@@ -10,50 +10,38 @@ function Page5() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.matchMedia({
-      "(min-width: 641px)": () => {
-        const sections = [photographyRef, videographyRef, visualRef];
+    const sections = [photographyRef, videographyRef, visualRef];
 
-        sections.forEach((ref) => {
-          if (!ref.current) return;
+    // Kill all triggers before re-registering
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-          ScrollTrigger.create({
-            trigger: ref.current,
-            start: 'top 47%',
-            end: 'top 25%',
-            onEnter: () => ref.current.classList.add('text-white'),
-            onLeave: () => ref.current.classList.remove('text-white'),
-            onEnterBack: () => ref.current.classList.add('text-white'),
-            onLeaveBack: () => ref.current.classList.remove('text-white'),
+    // Delay to wait for layout (especially on mobile)
+    setTimeout(() => {
+      ScrollTrigger.matchMedia({
+        // Apply triggers for both desktop and mobile
+        "all": () => {
+          sections.forEach((ref) => {
+            if (!ref.current) return;
+
+            ScrollTrigger.create({
+              trigger: ref.current,
+              start: 'top 50%',
+              end: 'top 10%',
+              onEnter: () => ref.current.classList.add('text-white'),
+              onLeave: () => ref.current.classList.remove('text-white'),
+              onEnterBack: () => ref.current.classList.add('text-white'),
+              onLeaveBack: () => ref.current.classList.remove('text-white'),
+              markers: false, // set to true if debugging
+            });
           });
-        });
 
-        ScrollTrigger.refresh(); // Ensures triggers update on layout load
-      },
-
-      "(max-width: 640px)": () => {
-        const sections = [photographyRef, videographyRef, visualRef];
-
-        sections.forEach((ref) => {
-          if (!ref.current) return;
-
-          ScrollTrigger.create({
-            trigger: ref.current,
-            start: 'top 50%',
-            end: 'top 10%',
-            onEnter: () => ref.current.classList.add('text-white'),
-            onLeave: () => ref.current.classList.remove('text-white'),
-            onEnterBack: () => ref.current.classList.add('text-white'),
-            onLeaveBack: () => ref.current.classList.remove('text-white'),
-          });
-        });
-
-        ScrollTrigger.refresh(); // Ensures triggers update on layout load
-      }
-    });
+          ScrollTrigger.refresh(); // Ensure everything is calculated correctly
+        },
+      });
+    }, 300); // Slight delay helps mobile devices after initial load
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
