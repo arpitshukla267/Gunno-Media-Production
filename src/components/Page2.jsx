@@ -9,7 +9,6 @@ function Page2() {
   const handleMouseEnter = () => {
     if (videoRef.current) {
       videoRef.current.muted = false;
-      
     }
   };
 
@@ -32,19 +31,28 @@ function Page2() {
 
         {/* Text Section */}
         <div className="relative z-10 w-full lg:w-[45%] backdrop-blur-sm bg-black/50 p-5 sm:p-8 md:p-10 rounded-2xl">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bebas-font tracking-wide mb-6 leading-tight">
+          <h1
+            style={{ fontFamily: 'Anton, sans-serif' }}
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide mb-6 leading-tight"
+          >
             Who We <span className="text-orange-400">Are</span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed mb-8">
-            <ul>
-              <li>We are a video production startup.</li><br></br>
-              <li>Our USP - We give 10X better video quality at a competative price.</li>
-              <li>By leveraging state - of-the -art
-                technology, expert craftsmanship, and a deep understanding of market
-                trends, we ensure that every video captivates, engages, and drives results.
+
+          <p
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+            className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed mb-8"
+          >
+            <ul className="list-disc pl-5 space-y-2">
+              <li>We are a video production startup.</li>
+              <li>
+                Our USP - We give 10X better video quality at a competitive price.
+              </li>
+              <li>
+                By leveraging state-of-the-art technology, expert craftsmanship, and a deep understanding of market trends, we ensure that every video captivates, engages, and drives results.
               </li>
             </ul>
           </p>
+
           <NavLink
             to="/contact"
             className={({ isActive }) =>
@@ -59,7 +67,6 @@ function Page2() {
 
         {/* Video Section */}
         <div className="relative z-10 w-[100%] sm:w-4/5 md:w-3/4 lg:max-w-md scale-100 sm:scale-130 overflow-hidden shadow-lg">
-
           <video
             ref={videoRef}
             src={aboutUs}

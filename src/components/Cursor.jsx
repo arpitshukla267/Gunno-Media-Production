@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function Cursor({ text = 'Helloo' }) {
+function Cursor({ text = ' Hello ' }) {
   const cursorRef = useRef(null);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [isEnabled, setIsEnabled] = useState(true);

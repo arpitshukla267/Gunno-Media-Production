@@ -83,9 +83,12 @@ export default function Page4() {
 
       {/* Heading */}
       <div className="text-center">
-        <h1 className="text-4xl sm:text-5xl m-10 uppercase bebas-font text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-pink-500 to-red-500">
+        <h1
+          style={{ fontFamily: 'Anton, sans-serif' }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-500 to-red-500 animate-gradient-x drop-shadow-[0_2px_15px_rgba(255,105,135,0.4)] text-center m-10"
+        >
           Brand Reels
-        </h1>
+        </h1>  
       </div>
 
       {/* Mobile Arrow */}

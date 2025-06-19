@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/Gunnomedialogo.svg';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
@@ -13,17 +12,21 @@ function Nav() {
       <div className="flex items-center justify-between w-full">
         {/* Logo */}
         <a href="/">
-          <img src={logo} alt="Logo" className="h-10 sm:h-12 w-auto" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-10 sm:h-12 w-auto drop-shadow-md"
+          />
         </a>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex flex-row gap-8 font-semibold">
+        <ul className="hidden md:flex flex-row gap-10 font-semibold text-[1rem] tracking-wide" style={{ fontFamily: 'Orbitron, sans-serif' }}>
           <li>
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md transition duration-200 ${
+                `block px-3 py-2 rounded-md transition duration-200 transform hover:scale-105 ${
                   isActive ? 'text-orange-500 font-bold underline' : 'text-orange-300'
                 } hover:text-orange-400`
               }
@@ -35,7 +38,7 @@ function Nav() {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md transition duration-200 ${
+                `block px-3 py-2 rounded-md transition duration-200 transform hover:scale-105 ${
                   isActive ? 'text-orange-500 font-bold underline' : 'text-orange-300'
                 } hover:text-orange-400`
               }
@@ -51,14 +54,17 @@ function Nav() {
         </button>
       </div>
 
-      {/* Mobile Dropdown With Animation */}
+      {/* Mobile Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height] duration-600 ease-in-out ${
+        className={`md:hidden overflow-hidden transition-[max-height] duration-500 ease-in-out ${
           isOpen ? 'max-h-96' : 'max-h-0'
         }`}
       >
-        <div className="bg-black/60 backdrop-blur-lg rounded-lg p-4">
-          <ul className="flex flex-col gap-4 font-semibold text-center">
+        <div className="bg-black/70 backdrop-blur-xl rounded-lg p-5 mt-2 shadow-lg">
+          <ul
+            className="flex flex-col gap-5 font-semibold text-center text-base tracking-wide"
+            style={{ fontFamily: 'Orbitron, sans-serif' }}
+          >
             <li>
               <NavLink
                 to="/"

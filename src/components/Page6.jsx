@@ -3,57 +3,57 @@ import { NavLink } from "react-router-dom";
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-around px-4 sm:px-6 md:px-10 py-6 sm:py-10">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl mb-6 sm:mb-10 font-bold tracking-widest leading-tight uppercase">
+    <div className="min-h-screen bg-black text-white font-poppins flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 py-10">
+      
+      {/* Header Section */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bebas tracking-widest leading-tight uppercase text-white drop-shadow-lg">
           Turning Imagination
           <br />
           Into Reality
         </h1>
         <NavLink
           to="/contact"
-          className="font-bold border-2 px-4 py-2 rounded-xl text-sm hover:cursor-pointer hover:text-gray-400"
+          className="inline-block mt-8 px-6 py-3 border-2 border-white rounded-xl text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
         >
           Let's Talk
         </NavLink>
       </div>
 
       {/* Marquee Section */}
-      <div className="overflow-hidden whitespace-nowrap w-full bg-black py-6 sm:py-10 rotate-[-5deg]">
+      <div className="overflow-hidden w-full py-6 sm:py-10 bg-black rotate-[-3deg]">
         <style>
           {`
             @keyframes marquee {
-              0%   { transform: translateX(-100%); }
-              100% { transform: translateX(0%); }
+              0%   { transform: translateX(0%); }
+              100% { transform: translateX(-100%); }
             }
 
             .marquee {
-              animation: marquee 40s linear infinite;
+              animation: marquee 35s linear infinite;
             }
           `}
         </style>
 
-        <ul className="inline-flex marquee gap-8 sm:gap-12 md:gap-16 mb-10 sm:mb-20">
-          {[
-            "photography",
-            "videography",
-            "Pre & Post Production",
-            "photography",
-            "videography",
-            "Pre & Post Production",
-            "photography",
-            "videography",
-            "Pre & Post Production"
-          ].map((text, index) => (
-            <li
-              key={index}
-              className="uppercase text-4xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white whitespace-nowrap"
-            >
-              {text}
-            </li>
-          ))}
-        </ul>
+        <div className="whitespace-nowrap w-full">
+          <ul className="inline-flex marquee gap-12 sm:gap-20 md:gap-28">
+            {[
+              "Photography",
+              "Videography",
+              "Pre & Post Production",
+              "Photography",
+              "Videography",
+              "Pre & Post Production"
+            ].map((text, index) => (
+              <li
+                key={index}
+                className="uppercase text-3xl sm:text-5xl md:text-7xl font-extrabold font-bebas text-white tracking-wider"
+              >
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

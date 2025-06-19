@@ -22,7 +22,10 @@ function Page7() {
 
   return (
     <div className="bg-black min-h-screen text-white px-4 py-10">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl text-center mb-16 mt-10 uppercase bebas-font text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-pink-500 to-red-500">
+      <h1
+        style={{ fontFamily: 'Anton, sans-serif' }}
+        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-20 uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-500 to-red-500 animate-gradient-x drop-shadow-[0_2px_15px_rgba(255,105,135,0.4)] text-center m-10"
+      >
         Brand's Photoshoot
       </h1>
 
