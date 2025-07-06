@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
-import dslrCameraLeft from '../assets/loading-page-left.jpg';
-import dslrCameraRight from '../assets/loading-page-right.jpg';
-import dslrCameraLeftMobile from '../assets/loading-page-mobile-left1.jpg';
-import dslrCameraRightMobile from '../assets/loading-page-mobile-right1.jpg';
+import dslrCameraLeft from '../assets/loading-page-left-min.jpg';
+import dslrCameraRight from '../assets/loading-page-right-min.jpg';
+import dslrCameraLeftMobile from '../assets/loading-page-mobile-left1-min.jpg';
+import dslrCameraRightMobile from '../assets/loading-page-mobile-right1-min.jpg';
 import Cursor from './Cursor';
 import Page2 from './Page2';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
