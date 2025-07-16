@@ -119,7 +119,7 @@ function Page3() {
             width: '100%',
             playerVars: {
               autoplay: 0,
-              mute: 1,
+              mute: 0,
               loop: 1,
               controls: 0,
               modestbranding: 1,
