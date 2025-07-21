@@ -154,7 +154,7 @@ function BrandEvents() {
       </div>
 
       {/* Initial Videos */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 px-2 md:px-10">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 px-2 mt-[-2rem] md:mt-0 md:px-10">
         {videoIds.slice(0, initialCount).map((url, index) =>
           renderVideo(url, index)
         )}

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Cursor({ text = ' Hello ' }) {
   const cursorRef = useRef(null);
@@ -7,9 +8,9 @@ function Cursor({ text = ' Hello ' }) {
 
   const mouse = useRef({ x: 0, y: 0 });
   const pos = useRef({ x: 0, y: 0 });
+  const location = useLocation(); // ✅ get current path
 
   useEffect(() => {
-    // Disable cursor on small screens
     const mediaQuery = window.matchMedia('(max-width: 640px)');
     setIsEnabled(!mediaQuery.matches);
 
@@ -54,16 +55,18 @@ function Cursor({ text = ' Hello ' }) {
     };
   }, [isEnabled]);
 
-  if (!isEnabled) return null; // 🔕 Don't render on small screens
+  if (!isEnabled) return null;
+
+  const shouldShowText = location.pathname === '/' && isFirstPage;
 
   return (
     <div
       ref={cursorRef}
       className={`fixed z-99 p-1 border-2 pointer-events-none mix-blend-difference transition-all duration-300 ease-out
-        ${isFirstPage ? 'w-auto h-7 rounded-md' : 'w-6 h-6 rounded-full bg-amber-50 '}
+        ${shouldShowText ? 'w-auto h-7 rounded-md' : 'w-6 h-6 rounded-full bg-amber-50'}
         text-white border-white flex items-center justify-center`}
     >
-      {isFirstPage && text}
+      {shouldShowText && text}
     </div>
   );
 }

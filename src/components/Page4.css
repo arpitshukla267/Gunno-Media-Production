@@ -14,13 +14,30 @@
 
 .scroll-content {
   display: inline-flex;
-  gap: 2rem;
+  gap: 5rem;
   animation: scrollReels 20s linear infinite;
   animation-play-state: running;
 }
 
 .scroll-paused {
   animation-play-state: paused !important;
+}
+
+/* Remove Instagram default margin/padding */
+.instagram-media {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  background: transparent !important;
+}
+
+/* Optional: smooth card styling */
+.insta-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: transparent;
 }
 
 @media (max-width: 640px) {
@@ -33,3 +50,22 @@
 .scroll-content:hover {
   cursor: pointer;
 }
+
+.insta-embed-wrapper {
+  min-height: 560px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.instagram-media {
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+  min-height: 560px !important;
+}
+

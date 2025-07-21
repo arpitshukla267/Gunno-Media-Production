@@ -81,7 +81,7 @@ function Footer() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm hover:text-white transition-colors"
             >
-              <Linkedin size={18} /> LinkedIn
+              <Linkedin size={18} /> Linkedin
             </a>
           </li>
           <li>
